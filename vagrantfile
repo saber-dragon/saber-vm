@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+    hostname = "saber.xenial64.box"
+    locale = "en_GB.UTF.8"
+
+    # Box
+    config.vm.box = "ubuntu/xenial64"
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.gui = false
+        vb.name = "xenial64"
+        vb.memory = 512
+        vb.cpus = 1
+    end
+
+    # Network
+    config.vm.network "forwarded_port", guest: 80, host: 8080
+
+    # Shared folders
+    config.vm.synced_folder ".", "/srv"
+
+    # Setup
+    config.vm.provision :shell, :inline => "touch .hushlogin"
+    config.vm.provision :shell, :inline => "hostnamectl set-hostname #{hostname} && locale-gen #{locale}"
+    config.vm.provision "shell", path: "setup.sh"
+    # config.vm.provision "file", source: "fonts/*", destination: "/home/vagrant/fonts"
+    config.vm.provision "file", source: "./dotfiles/.zshrc", destination: "/home/vagrant/.zshrc"
+    config.vm.provision "file", source: "./dotfiles/Packet Control.sublime-settings", destination: "~/.config/sublime-text-3/Packages/User/Package Control.sublime-settings"
+    config.vm.provision "file", source: "./dotfiles/Preferences.sublime-settings", destination: "~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+    config.vm.provision "shell", path: "config.sh", privileged: false
+    # config.vm.provision "shell", path: "post_setup.sh"
+
+
+end
