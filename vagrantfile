@@ -4,8 +4,8 @@
 Vagrant.configure("2") do |config|
 
     #hostname = "saber.xenial64.box"
-    name = "mininet-xenial64"
-    hostname = "#{name}.box"
+    name = "dev-xenial64"
+    config.vm.hostname = "#{name}.box"
     locale = "en_GB.UTF.8"
 
     # Box
@@ -15,32 +15,55 @@ Vagrant.configure("2") do |config|
         vb.gui = false
         #vb.name = "xenial64"
         vb.name = "#{name}"
+<<<<<<< HEAD
         vb.memory = 768
         vb.cpus = 1
+=======
+        vb.memory = 2048
+        vb.cpus = 2
+>>>>>>> 8170be639f674fe5add8c0d07dd0c3c48ea33993
     end
 
     # Network
     config.vm.network "forwarded_port", guest: 2333, host: 2333
+<<<<<<< HEAD
     # turn on X11
     config.ssh.forward_agent = true
     config.ssh.forward_x11 = true
+=======
+    config.vm.network "forwarded_port", guest: 8888, host: 8888
+>>>>>>> 8170be639f674fe5add8c0d07dd0c3c48ea33993
 
     # Shared folders
     config.vm.synced_folder ".", "/srv"
 
     # Setup
+<<<<<<< HEAD
     # config.vm.provision :shell, :inline => "touch .hushlogin"
     # config.vm.provision :shell, :inline => "hostnamectl set-hostname #{hostname} && locale-gen #{locale}"
+=======
+>>>>>>> 8170be639f674fe5add8c0d07dd0c3c48ea33993
     config.vm.provision :shell, :inline => "locale-gen #{locale}"
     config.vm.provision "shell", path: "setup.sh"
-    # config.vm.provision "file", source: "fonts/*", destination: "/home/vagrant/fonts"
+    config.vm.provision :shell, privileged: false, :inline => "mkdir -p /home/vagrant/fonts"
+    config.vm.provision "file", source: "fonts", destination: "/home/vagrant/fonts"
     config.vm.provision "file", source: "./dotfiles/.zshrc", destination: "/home/vagrant/.zshrc"
     config.vm.provision "file", source: "./dotfiles/Packet Control.sublime-settings", destination: "~/.config/sublime-text-3/Packages/User/Package Control.sublime-settings"
     config.vm.provision "file", source: "./dotfiles/Preferences.sublime-settings", destination: "~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings"
+<<<<<<< HEAD
     #
     # config.vm.provision "shell", path: "post_setup.sh"
     config.vm.provision "shell", path: "mininet.sh"
     config.vm.provision "shell", path: "grpc.sh"
     config.vm.provision :shell, :inline => "chown -R vagrant:vagrant /home/vagrant"
     config.vm.provision "shell", path: "config.sh", privileged: false
+=======
+    config.vm.provision "shell", path: "config.sh", privileged: false
+    # 
+    config.vm.provision "shell", path: "mininet.sh"
+    config.vm.provision "shell", path: "docker.sh"
+    config.vm.provision :shell, :inline => "chown -R vagrant:vagrant /home/vagrant"
+    config.vm.provision :shell, :inline => "cd /home/vagrant && mv fonts/* /usr/share/fonts"
+
+>>>>>>> 8170be639f674fe5add8c0d07dd0c3c48ea33993
 end
