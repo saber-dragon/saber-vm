@@ -2,16 +2,20 @@
 set -e 
 
 apt-get update --fix-missing
-apt-get install -q -y build-essential cmake curl wget git zsh python python-dev python-pip vim clang-format ruby ruby-dev
-apt-get install -q -y npm nodejs-legacy
-apt-get install -q -y python3 python3-pip python3-dev
+apt-get install -q -y build-essential cmake \
+curl wget git zsh python python-dev python-pip \
+vim clang-format ruby ruby-dev \
+autoconf libtool pkg-config libgflags-dev libgtest-dev \
+clang libc++-dev
+apt-get install -q -y npm libgtk2.0
+# apt-get install -q -y python3 python3-pip python3-dev
 gem install colorls
-pip3 install --upgrade pip
-pip install --upgrade pip
+# pip3 install --upgrade pip
+# pip install --upgrade pip
 pip install matplotlib sklearn pandas click numpy scipy yapf 
-python3 -m pip install matplotlib sklearn pandas click numpy scipy yapf
+# python3 -m pip install matplotlib sklearn pandas click numpy scipy yapf
 npm install -g configurable-http-proxy
-python3 -m pip install jupyterhub 
+# python3 -m pip install jupyterhub 
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 apt-get install apt-transport-https
