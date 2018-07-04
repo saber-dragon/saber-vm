@@ -19,7 +19,7 @@ apt-get update --fix-missing
 apt-get install -y -q docker-ce
 
 # post install
-groupadd docker
+# groupadd docker
 MY_USER=vagrant
 usermod -aG docker $MY_USER
 mkdir -p /home/"$MY_USER"/.docker
