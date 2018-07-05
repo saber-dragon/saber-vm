@@ -73,7 +73,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 # OS segment
 POWERLEVEL9K_OS_ICON_BACKGROUND='black'
-POWERLEVEL9K_LINUX_ICON='%F{cyan}\uf17c %F{white}Georgia%F{cyan}Tech%f'
+POWERLEVEL9K_LINUX_ICON='%F{cyan}\uf31b %F{white}Georgia%F{cyan}Tech%f'
 
 # VCS icons
 POWERLEVEL9K_VCS_GIT_ICON=$''
@@ -117,7 +117,7 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="mm/dd/yyyy"
 
 # Plugins to load
-plugins=(git)
+plugins=(git alias-tips send)
 source $ZSH/oh-my-zsh.sh
 
 # Prompt elements
