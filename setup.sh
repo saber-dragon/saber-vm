@@ -7,7 +7,7 @@ apt-get install -q -y build-essential cmake curl\
  clang-format clang ruby ruby-dev gdbserver libgtk2.0
 
 echo "Install network tools"
-apt-get install -y -q net-tools tshark iputils-ping tcpdump
+apt-get install -y -q net-tools iputils-ping tcpdump
 apt-get install -q -y npm 
 
 gem install colorls
