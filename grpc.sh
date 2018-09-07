@@ -2,7 +2,7 @@
 
 set -e 
 
-WD="/home/vagrant/GitHub"
+WD="/tmp"
 mkdir -p $WD
 cd $WD
 VERSION_PROBTOBUF="3.6.0"
