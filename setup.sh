@@ -4,7 +4,8 @@ set -e
 apt-get update --fix-missing
 apt-get install -q -y build-essential cmake curl\
  wget git zsh python python-dev python-pip vim \
- clang-format clang ruby ruby-dev gdbserver libgtk2.0
+ clang-format clang ruby ruby-dev gdbserver libgtk2.0 \
+ libboost-all-dev
 
 echo "Install network tools"
 apt-get install -y -q net-tools iputils-ping tcpdump
